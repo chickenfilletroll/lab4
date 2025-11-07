@@ -1,0 +1,46 @@
+
+Status: 200
+Final URL: http://scanme.nmap.org/
+Server header: Apache/2.4.7 (Ubuntu)
+Content-Type: text/html
+First 200 chars of body:\n <!DOCTYPE html>\n<html lang="en">\n<head>\n<title>Go ahead and ScanMe!</title>\n
+<meta name="viewport" content="width=device-width,initial-scale=1">\n<meta name="theme-color" content="#2A0D45">\n<link rel="p
+
+Step 4 — Inspect headers with a different User-Agent
+
+curl -i  -A "MyTestAgent/1.0" https://httpbin.org/headers 
+
+OUTPUT:
+
+HTTP/2 200 
+date: Fri, 07 Nov 2025 10:33:30 GMT
+content-type: application/json
+content-length: 177
+server: gunicorn/19.9.0
+access-control-allow-origin: *
+access-control-allow-credentials: true
+
+{
+  "headers": {
+    "Accept": "*/*", 
+    "Host": "httpbin.org", 
+    "User-Agent": "MyTestAgent/1.0", 
+    "X-Amzn-Trace-Id": "Root=1-690dcaf9-75a95ee4433cd2a65e746918"
+  }
+}
+
+curl -i  https://httpbin.org/headers 
+OUTPUT:
+
+HTTP/2 503 
+server: awselb/2.0
+date: Fri, 07 Nov 2025 10:35:36 GMT
+content-type: text/html
+content-length: 162
+
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+</body>
+</html>

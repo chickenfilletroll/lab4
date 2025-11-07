@@ -1,0 +1,41 @@
+1. What status line did you get and what does it mean?
+  HTTP/1.1 200 OK ->> means request was successful and sserver returned requested page 
+
+2. What is the Server header value? Is it specific (nginx/1.22) or generic? 
+Server: Apache/2.4.7 (Ubuntu) --> tells us exactly what server software, version and os its running 
+
+1. What is the <title> of the page (if present)?
+Go ahead and ScanMe!
+
+2. Do you see any ```<form>``` elements? What are their action attributes (copy them)?
+  <form class="nst-search" id="nst-head-search" action="/search/">
+
+Did requests and curl report the same status and server header?
+ yes, responds with the same headers as the client
+
+If different, what header or other factor might explain it (redirects, default headers, user agent)?
+  If different, it could be because:
+- User-Agent differences bc server treats curl vs python differently
+- requests follows redirects automatically, curl -I doesn't
+- Some servers block scanning tools but allow browsers
+
+
+Did the response change (status, server header, content-length) when the User-Agent was MyTestAgent/1.0?
+  No, the response didnt change, Both requests returned the same status, headers, and content from httpbin.org.
+
+If it had changed, what could that mean about the server’s defenses?
+  it could mean the server has:
+- WAF (Web Application Firewall) blocking suspicious User-Agents
+- Security rules that block scanning tools like sqlmap/nikto
+- Different content for bots vs real browsers
+- Rate limiting or blocking for unknown user agents
+
+What three pieces of information from the steps above would be most useful in a reconnaissance report, and why?
+1. Server header (Apache/2.4.7 Ubuntu) - reveals specific software versions that may have known vulnerabilities
+2. HTTP status codes (200, 301, 404) - maps site structure and finds hidden pages or redirects
+3. Form elements with methods/actions - identifies user input points like login forms that can be tested for security flaws
+
+
+One quick defensive suggestion an admin could use to reduce information leakage from headers.
+Configure the web server to remove or genericize the Server header (e.g., change "Apache/2.4.7 Ubuntu" to just "Web Server")
+ to prevent attackers from identifying specific software versions with known vulnerabilities.
