@@ -1,0 +1,29 @@
+{
+  "url": "http://scanme.nmap.org",
+  "title": "Go ahead and ScanMe!",
+  "meta_description": null,
+  "forms": [
+    {
+      "method": "GET",
+      "action": "http://scanme.nmap.org/search/",
+      "inputs": [
+        {
+          "name": "q",
+          "type": "search",
+          "value": null
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "action": "http://scanme.nmap.org/search/",
+      "inputs": [
+        {
+          "name": "q",
+          "type": "search",
+          "value": null
+        }
+      ]
+    }
+  ]
+}

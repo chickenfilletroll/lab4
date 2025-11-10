@@ -1,0 +1,23 @@
+{
+  "url": "http://testphp.vulnweb.com",
+  "title": "Home of Acunetix Art",
+  "meta_description": null,
+  "forms": [
+    {
+      "method": "POST",
+      "action": "http://testphp.vulnweb.com/search.php?test=query",
+      "inputs": [
+        {
+          "name": "searchFor",
+          "type": "text",
+          "value": null
+        },
+        {
+          "name": "goButton",
+          "type": "submit",
+          "value": "go"
+        }
+      ]
+    }
+  ]
+}
